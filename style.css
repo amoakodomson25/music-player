@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.audioplayer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #1e1e1e;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    min-height: 120px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    max-width: 500px;
+    margin: auto;
+}
+
+.audioplayer .container {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    width: 100%;
+}
+
+.cover-art {
+    grid-row: 1 / span 3;
+    background: #333;
+    border-radius: 10px;
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.artiste {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.play-pause-button,
+.nextBtn,
+.prevBtn {
+    width: 35px;
+    height: 35px;
+    background: #ff4f4f;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background 0.3s ease;
+}
+
+.play-pause-button:hover,
+.nextBtn:hover,
+.prevBtn:hover {
+    background: #e13d3d;
+}
+
+.progress-bar {
+    grid-column: 2 / span 1;
+    background: #444;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.progress {
+    background: #ff4f4f;
+    height: 100%;
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+
+.audioplayer .container {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 12px;
+    width: 100%;
+    align-items: center; /* Centers items vertically in grid cells */
+}
+
+.controls {
+    grid-column: 2 / span 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.play-pause-button,
+.nextBtn,
+.prevBtn {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 79, 79, 0.8);
+    border-radius: 50%;
+    display: flex; /* Center icon inside */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.play-pause-button:hover,
+.nextBtn:hover,
+.prevBtn:hover {
+    background: rgba(255, 79, 79, 1);
+    transform: scale(1.1);
+}
