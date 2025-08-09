@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,27 +12,26 @@
     background: #1e1e1e;
     color: #fff;
     font-family: Arial, sans-serif;
-    min-height: 120px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    max-width: 500px;
+    max-width: 300px;
     margin: auto;
 }
 
 .audioplayer .container {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+    gap: 12px;
 }
 
 .cover-art {
-    grid-row: 1 / span 3;
     background: #333;
     border-radius: 10px;
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
     background-size: cover;
     background-position: center;
 }
@@ -47,34 +46,12 @@
     color: #bbb;
 }
 
-.play-pause-button,
-.nextBtn,
-.prevBtn {
-    width: 35px;
-    height: 35px;
-    background: #ff4f4f;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin: 0 5px;
-    transition: background 0.3s ease;
-}
-
-.play-pause-button:hover,
-.nextBtn:hover,
-.prevBtn:hover {
-    background: #e13d3d;
-}
-
 .progress-bar {
-    grid-column: 2 / span 1;
     background: #444;
     height: 6px;
     border-radius: 3px;
     overflow: hidden;
-    margin-top: 8px;
+    width: 100%;
 }
 
 .progress {
@@ -84,21 +61,11 @@
     transition: width 0.2s ease;
 }
 
-
-.audioplayer .container {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 12px;
-    width: 100%;
-    align-items: center; /* Centers items vertically in grid cells */
-}
-
 .controls {
-    grid-column: 2 / span 1;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 15px;
     margin-top: 5px;
 }
 
@@ -109,7 +76,7 @@
     height: 38px;
     background: rgba(255, 79, 79, 0.8);
     border-radius: 50%;
-    display: flex; /* Center icon inside */
+    display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
