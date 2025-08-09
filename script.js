@@ -1,19 +1,19 @@
 const songs = [
     {
-        title: 'Song One',
-        artist: 'Artist One',
+        title: 'Asibe Happy',
+        artist: 'Kabza De Small',
         cover: 'songs/cover1.jpg',
         file: 'songs/song1.mp3'
     },
     {
-        title: 'Song Two',
-        artist: 'Artist Two',
+        title: 'Abelele (Feat. Ami Faku)',
+        artist: 'Kabza De Small',
         cover: 'songs/cover2.jpg',
         file: 'songs/song2.mp3'
     },
     {
-        title: 'Song Three',
-        artist: 'Artist Three',
+        title: 'Ngishutheni',
+        artist: 'Goon Flabour',
         cover: 'songs/cover3.jpg',
         file: 'songs/song3.mp3'
     }
