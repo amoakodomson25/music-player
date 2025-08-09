@@ -1,3 +1,7 @@
+
+
+
+
 function loadSong(index) {
     const song = songs[index];
     titleEl.textContent = song.title;
@@ -26,3 +30,13 @@ document.getElementById('prevBtn').addEventListener('click', () => {
     audioEl.play();
     updatePlayIcon();
 });
+
+audioEl.addEventListener('timeupdate', () => {
+    const progress = (audioEl.currentTime / audioEl.duration) * 100;
+    progressBar.style.width = `${progress}%`;
+    progressThumb.style.left = `${progress}%`;
+});
+
+function updatePlayIcon() {
+    audioEl.paused ? PlayIcon.src = 'play.png' : PlayIcon.src = 'pause.png' ;
+}
