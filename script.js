@@ -70,8 +70,16 @@ function updatePlayIcon() {
         playIcon.src = 'assets/pause.png';
     }
 }
+let hasSetInitialVolume = false;
 
 playBtn.addEventListener('click', () => {
+    if (!hasSetInitialVolume) {
+        audioEl.volume = 0.5; // Set volume now that user interacted
+        const percent = audioEl.volume * 100;
+        volumeFill.style.width = `${percent}%`;
+        volumeThumb.style.left = `${percent}%`;
+        hasSetInitialVolume = true;
+    }   
     if (audioEl.paused) {
         audioEl.play();
     } else {
