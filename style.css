@@ -36,6 +36,8 @@
     height: 300px;
     background-size: cover;
     background-position: center;
+    margin-bottom: 10px;
+
 }
 .cover-art img {
     width: 100%;
@@ -50,6 +52,7 @@
 
 .artiste {
     font-size: 14px;
+    margin-bottom: 10px;
     color: #bbb;
 }
 
@@ -89,30 +92,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-top: 5px;
+    gap: 50px;
+    margin-top: 0px;
 }
 
 .play-pause-button,
 .nextBtn,
 .prevBtn {
-    width: 38px;
-    height: 38px;
-    background: #4fa4ffcc;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .play-pause-button:hover,
 .nextBtn:hover,
 .prevBtn:hover {
-    background: rgba(255, 79, 79, 1);
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 
@@ -245,10 +244,81 @@ body::after {
     padding: 12px 10px;
     font-size: 14px;
     color: #fff;
-    background: rgba(0, 0, 0, 0.4); /* Slight extra dark strip for clarity */
-    backdrop-filter: blur(6px);     /* Glass effect */
-    z-index: 10;                    /* Always above background */
+    background: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(6px);     
+    z-index: 10;                  
 }
+
+.progress-wrapper {
+    width: 300px;
+}
+
+.durations {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 4px;
+    user-select: none;
+}
+
+
+.current-time,
+.total-duration {
+    margin-top: 10px;
+    min-width: 35px;
+    text-align: center;
+}
+
+.volume-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 12px;
+    width: 300px;
+}
+
+.volume-low,
+.volume-high {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+}
+
+.volume {
+    position: relative;
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.volume-fill {
+    height: 100%;
+    background: #4fa3ff;
+    border-radius: 3px;
+    width: 50%;
+    transition: width 0.15s ease; 
+}
+
+.volume-thumb {
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Matches initial 50% volume */
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    transition: left 0.15s ease;
+}
+
 
 .footer a {
     color: #4fa3ff;

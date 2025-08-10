@@ -178,3 +178,82 @@ function updatePlaylistActive() {
         item.classList.toggle('active', idx === currentSongIndex);
     });
 }
+
+
+
+
+const volumeBar = document.querySelector('.volume');
+const volumeFill = document.querySelector('.volume-fill');
+const volumeThumb = document.querySelector('.volume-thumb');
+
+function setVolumeFromPosition(e) {
+    const rect = volumeBar.getBoundingClientRect();
+    let volume = (e.clientX - rect.left) / rect.width;
+    volume = Math.min(Math.max(volume, 0), 1); // clamp between 0–1
+    audioEl.volume = volume;
+
+    // Update both fill and thumb
+    const percent = volume * 100;
+    volumeFill.style.width = `${percent}%`;
+    volumeThumb.style.left = `${percent}%`;
+}
+
+// Drag logic
+let isDraggingVolume = false;
+
+volumeThumb.addEventListener('mousedown', () => isDraggingVolume = true);
+document.addEventListener('mouseup', () => isDraggingVolume = false);
+document.addEventListener('mousemove', e => {
+    if (isDraggingVolume) setVolumeFromPosition(e);
+});
+
+// Click logic
+volumeBar.addEventListener('click', setVolumeFromPosition);
+
+// Keep synced with audio element
+audioEl.addEventListener('volumechange', () => {
+    const percent = audioEl.volume * 100;
+    volumeFill.style.width = `${percent}%`;
+    volumeThumb.style.left = `${percent}%`;
+});
+
+
+function disableTransitions() {
+    volumeFill.style.transition = 'none';
+    volumeThumb.style.transition = 'none';
+}
+function enableTransitions() {
+    volumeFill.style.transition = '';
+    volumeThumb.style.transition = '';
+}
+
+volumeThumb.addEventListener('mousedown', () => {
+    isDraggingVolume = true;
+    disableTransitions();
+});
+document.addEventListener('mouseup', () => {
+    if (isDraggingVolume) {
+        isDraggingVolume = false;
+        enableTransitions();
+    }
+});
+
+const currentTimeEl = document.querySelector('.current-time');
+const totalDurationEl = document.querySelector('.total-duration');
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+// Update total duration when song metadata loads
+audioEl.addEventListener('loadedmetadata', () => {
+    totalDurationEl.textContent = formatTime(audioEl.duration);
+});
+
+// Update current time while playing
+audioEl.addEventListener('timeupdate', () => {
+    currentTimeEl.textContent = formatTime(audioEl.currentTime);
+});
+
