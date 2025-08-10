@@ -13,7 +13,7 @@ const songs = [
     },
     {
         title: 'Ngishutheni',
-        artist: 'Goon Flabour',
+        artist: 'Goon Flavour',
         cover: 'songs/cover3.jpg',
         file: 'songs/song3.mp3'
     }
