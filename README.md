@@ -5,11 +5,10 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 
 ---
 - Screenshots
-
-<img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/MainScreen.png" width="200px" height="200px" />
- 
+<div style="display: flex">
+<img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/MainScreen.png" width="200px" height="200px" /> 
 <img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/OpenedPlaylist.png" width="200px" height="200" />
-
+</div>
 
 ---
 
