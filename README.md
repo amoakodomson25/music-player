@@ -37,5 +37,5 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/music-player.git
+git clone https://github.com/amoakodomson25/music-player.git
 cd music-player
