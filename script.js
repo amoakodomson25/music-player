@@ -46,6 +46,10 @@ function loadSong(index) {
     audioEl.src = song.file;
     updatePlayIcon(); 
     updatePlaylistActive() 
+     // Reset progress UI
+     progressBar.style.width = '0%';
+     progressThumb.style.left = '0%';
+
 
 
     document.body.style.setProperty(
@@ -54,9 +58,11 @@ function loadSong(index) {
     );
     document.body.style.backgroundImage = `url(${song.cover})`; 
     document.body.style.setProperty('--cover-url', `url(${song.cover})`);
-
 }
 
+audioEl.addEventListener('loadedmetadata', () => {
+    totalDurationEl.textContent = formatTime(audioEl.duration);
+});
 function updatePlayIcon() {
     if (audioEl.paused) {
         playIcon.src = 'assets/play.png';
