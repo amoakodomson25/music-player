@@ -159,6 +159,7 @@ audioEl.addEventListener('ended', () => {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     loadSong(currentSongIndex);
     audioEl.play();
+    updatePlayIcon();
 });
 
 const playlistEl = document.querySelector('.playlist-items');
@@ -177,6 +178,7 @@ songs.forEach((song, index) => {
         loadSong(currentSongIndex);
         audioEl.play();
         updatePlaylistActive();
+        updatePlayIcon();
     });
     playlistEl.appendChild(li);
 });
