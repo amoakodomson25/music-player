@@ -31,6 +31,8 @@ const playIcon = document.querySelector('.play-icon');
 const progressThumb = document.querySelector('.progress-thumb');
 
 const audioEl = new Audio();
+audioEl.volume = 0.3;
+
 
 let currentSongIndex = 0;
 
@@ -186,6 +188,11 @@ const volumeBar = document.querySelector('.volume');
 const volumeFill = document.querySelector('.volume-fill');
 const volumeThumb = document.querySelector('.volume-thumb');
 
+const startPercent = audioEl.volume * 100;
+volumeFill.style.width = `${startPercent}%`;
+volumeThumb.style.left = `${startPercent}%`;
+
+
 function setVolumeFromPosition(e) {
     const rect = volumeBar.getBoundingClientRect();
     let volume = (e.clientX - rect.left) / rect.width;
@@ -260,3 +267,16 @@ audioEl.addEventListener('timeupdate', () => {
 function togglePlaylist() {
     document.querySelector('.playist').classList.toggle('collapsed');
 }
+
+const savedVolume = localStorage.getItem('player-volume');
+audioEl.volume = savedVolume !== null ? parseFloat(savedVolume) : 0.3;
+
+// Sync UI
+const initPercent = audioEl.volume * 100;
+volumeFill.style.width = `${initPercent}%`;
+volumeThumb.style.left = `${initPercent}%`;
+
+// Save when changed
+audioEl.addEventListener('volumechange', () => {
+    localStorage.setItem('player-volume', audioEl.volume);
+});
