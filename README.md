@@ -5,9 +5,10 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 
 ---
 - Screenshots
-<img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/MainScreen.png" width="200px height="200px />
- <img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/MinimalWeatherAppScreenshots/Permission.jpg" width="152.25px" height="320px"/>
-![Opened playlist](https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/OpenedPlaylist.png)
+
+<img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/MainScreen.png" width="200px" height="200px" />
+ 
+<img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/OpenedPlaylist.png" width="200px" height="200" />
 
 
 ---
