@@ -22,6 +22,7 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 ---
 
 ## 📂 Project Structure
+```
 📁 music-player
 ├── index.html # Main HTML file
 ├── style.css # Styling for the player
@@ -29,3 +30,12 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 ├── assets/ icons # Control icons 
 ├── songs/ # MP3 files & Album cover images
 └── README.md # Project documentation
+```
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/music-player.git
+cd music-player
