@@ -27,7 +27,9 @@ const playBtn = document.querySelector('.play-pause-button');
 const prevBtn = document.querySelector('.prevBtn');
 const nextBtn = document.querySelector('.nextBtn');
 const progressBar = document.querySelector('.progress');
+const progressContainer = document.querySelector('.progress-bar');
 const playIcon = document.querySelector('.play-icon');
+const progressThumb = document.querySelector('.progress-thumb');
 
 // Create an audio element
 const audioEl = new Audio();
@@ -44,6 +46,16 @@ function loadSong(index) {
     coverEl.src = song.cover;
     audioEl.src = song.file;
     updatePlayIcon(); // reset play icon
+
+    document.body.style.setProperty(
+        '--bg-image',
+        `url(${song.cover})`
+    );
+    document.body.style.backgroundImage = `url(${song.cover})`; // fallback
+
+    // For pseudo-element
+    document.body.style.setProperty('--cover-url', `url(${song.cover})`);
+
 }
 
 function updatePlayIcon() {
@@ -69,12 +81,14 @@ nextBtn.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     loadSong(currentSongIndex);
     audioEl.play();
+    updatePlayIcon();
 });
 
 prevBtn.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     loadSong(currentSongIndex);
     audioEl.play();
+    updatePlayIcon();
 });
 
 // Progress bar update
@@ -83,4 +97,62 @@ audioEl.addEventListener('timeupdate', () => {
         const progress = (audioEl.currentTime / audioEl.duration) * 100;
         progressBar.style.width = `${progress}%`;
     }
+});
+
+progressContainer.addEventListener('click', (e) => {
+    const barWidth = progressContainer.clientWidth; // total width of progress bar
+    const clickX = e.offsetX; // position where clicked
+    const duration = audioEl.duration;
+
+    if (!isNaN(duration)) {
+        audioEl.currentTime = (clickX / barWidth) * duration;
+    }
+});
+
+let isDragging = false;
+
+progressContainer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    seek(e);
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+        seek(e);
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+});
+
+function seek(e) {
+    const rect = progressContainer.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = progressContainer.clientWidth;
+    const duration = audioEl.duration;
+
+    if (!isNaN(duration) && clickX >= 0 && clickX <= width) {
+        const newTime = (clickX / width) * duration;
+        audioEl.currentTime = newTime;
+        updateProgressVisual(clickX / width);
+    }
+}
+audioEl.addEventListener('timeupdate', () => {
+    if (!isDragging && audioEl.duration) {
+        const percent = audioEl.currentTime / audioEl.duration;
+        updateProgressVisual(percent);
+    }
+});
+
+function updateProgressVisual(percent) {
+    progressBar.style.width = `${percent * 100}%`;
+    progressThumb.style.left = `${percent * 100}%`;
+}
+
+// When song ends, play next
+audioEl.addEventListener('ended', () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    loadSong(currentSongIndex);
+    audioEl.play();
 });
