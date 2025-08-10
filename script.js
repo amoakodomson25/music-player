@@ -7,7 +7,7 @@ const songs = [
     },
     {
         title: 'Abelele (Feat. Ami Faku)',
-        artist: 'Kabza De Small',
+        artist: 'Kabza De Small x DJ Maphorisa',
         cover: 'songs/cover2.jpg',
         file: 'songs/song2.mp3'
     },
@@ -257,3 +257,6 @@ audioEl.addEventListener('timeupdate', () => {
     currentTimeEl.textContent = formatTime(audioEl.currentTime);
 });
 
+function togglePlaylist() {
+    document.querySelector('.playist').classList.toggle('collapsed');
+}
