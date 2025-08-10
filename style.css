@@ -15,8 +15,8 @@
     font-family: Arial, sans-serif;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    max-width: 350px;
-    margin: 50px auto 50px;
+    max-width: 325px;
+    margin: 20px auto 100px auto;
 }
 
 .audioplayer .container {
@@ -139,15 +139,13 @@
 
 
 .playist {
-    margin-top: 28px;
-    width: 325px;
+    width: 300px;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     padding: 10px;
     overflow: hidden;
     transition: max-height 0.4s ease, margin-bottom 0.4s ease;
     margin-bottom: 10px;
-
     max-height: 500px;
 }
 
@@ -215,8 +213,7 @@
 
 
 body {
-    margin: 0;
-    padding: 0;
+
     font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;

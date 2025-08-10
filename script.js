@@ -31,7 +31,7 @@ const playIcon = document.querySelector('.play-icon');
 const progressThumb = document.querySelector('.progress-thumb');
 
 const audioEl = new Audio();
-audioEl.volume = 0.3;
+audioEl.volume = 1;
 
 
 let currentSongIndex = 0;
@@ -70,16 +70,8 @@ function updatePlayIcon() {
         playIcon.src = 'assets/pause.png';
     }
 }
-let hasSetInitialVolume = false;
 
 playBtn.addEventListener('click', () => {
-    if (!hasSetInitialVolume) {
-        audioEl.volume = 0.5; // Set volume now that user interacted
-        const percent = audioEl.volume * 100;
-        volumeFill.style.width = `${percent}%`;
-        volumeThumb.style.left = `${percent}%`;
-        hasSetInitialVolume = true;
-    }   
     if (audioEl.paused) {
         audioEl.play();
     } else {
@@ -196,7 +188,7 @@ function updatePlaylistActive() {
 }
 
 
-
+/*
 
 const volumeBar = document.querySelector('.volume');
 const volumeFill = document.querySelector('.volume-fill');
@@ -258,6 +250,7 @@ document.addEventListener('mouseup', () => {
         enableTransitions();
     }
 });
+*/
 
 const currentTimeEl = document.querySelector('.current-time');
 const totalDurationEl = document.querySelector('.total-duration');
@@ -281,16 +274,3 @@ audioEl.addEventListener('timeupdate', () => {
 function togglePlaylist() {
     document.querySelector('.playist').classList.toggle('collapsed');
 }
-
-const savedVolume = localStorage.getItem('player-volume');
-audioEl.volume = savedVolume !== null ? parseFloat(savedVolume) : 0.3;
-
-// Sync UI
-const initPercent = audioEl.volume * 100;
-volumeFill.style.width = `${initPercent}%`;
-volumeThumb.style.left = `${initPercent}%`;
-
-// Save when changed
-audioEl.addEventListener('volumechange', () => {
-    localStorage.setItem('player-volume', audioEl.volume);
-});
