@@ -22,4 +22,10 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 ---
 
 ## 📂 Project Structure
-
+📁 music-player
+├── index.html # Main HTML file
+├── style.css # Styling for the player
+├── script.js # Player logic
+├── assets/ icons # Control icons 
+├── songs/ # MP3 files & Album cover images
+└── README.md # Project documentation
