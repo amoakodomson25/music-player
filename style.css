@@ -17,6 +17,7 @@
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     max-width: 350px;
     margin: 20px auto;
+    margin-bottom: 200px;
 }
 
 .audioplayer .container {
@@ -62,7 +63,7 @@
 }
 
 .progress {
-    background: #ff4f4f;
+    background: #4fa3ff;
     height: 100%;
     width: 0%;
     border-radius: 10px;
@@ -81,7 +82,7 @@
     background: white;
     border-radius: 50%;
     box-shadow: 0 0 4px rgba(0,0,0,0.5);
-    z-index: 10000; /* make sure it’s above .progress */
+    z-index: 10000;
     pointer-events: none;
 }
 .controls {
@@ -97,7 +98,7 @@
 .prevBtn {
     width: 38px;
     height: 38px;
-    background: rgba(255, 79, 79, 0.8);
+    background: #4fa4ffcc;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -149,11 +150,11 @@
 }
 
 .playlist-items li:hover {
-    background: rgba(255, 79, 79, 0.2);
+    background: #4fa4ff50;
 }
 
 .playlist-items li.active {
-    background: rgba(255, 79, 79, 0.4);
+    background: #4fa4ffaa;
     font-weight: bold;
 }
 
@@ -175,7 +176,6 @@ body {
     position: relative;
 }
 
-/* Blurred cover background */
 body::before {
     content: "";
     position: fixed;
@@ -186,13 +186,12 @@ body::before {
     background-size: cover;
     background-position: center;
     filter: blur(20px);
-    transform: scale(1.1); /* Prevent edges showing when blurred */
+    transform: scale(1.1); 
     z-index: -2;
     background-image: var(--bg-image);
     transition: background-image 0.4s ease;
 }
 
-/* Dark overlay for readability */
 body::after {
     content: "";
     position: fixed;
@@ -200,7 +199,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6); /* dark tint */
+    background: rgba(0,0,0,0.6); 
     z-index: -1;
 }
 body {
@@ -211,7 +210,6 @@ body {
     min-height: 100vh;
 }
 
-/* Blurred background */
 body::before {
     content: "";
     position: fixed;
@@ -223,12 +221,11 @@ body::before {
     background-size: cover;
     background-position: center;
     filter: blur(20px);
-    transform: scale(1.1); /* avoid edges when blurred */
+    transform: scale(1.1); 
     z-index: -2;
     transition: background-image 0.4s ease;
 }
 
-/* Dark overlay on top of blurred background */
 body::after {
     content: "";
     position: fixed;
@@ -239,18 +236,25 @@ body::after {
     background: rgba(0, 0, 0, 0.6);
     z-index: -1;
 }
-
-/* Footer style */
 .footer {
+    position: fixed;       /* Sticks to the viewport */
+    bottom: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
-    padding: 15px;
+    padding: 12px 10px;
     font-size: 14px;
     color: #fff;
+    background: rgba(0, 0, 0, 0.4); /* Slight extra dark strip for clarity */
+    backdrop-filter: blur(6px);     /* Glass effect */
+    z-index: 10;                    /* Always above background */
 }
+
 .footer a {
-    color: #ff4f4f;
+    color: #4fa3ff;
     text-decoration: none;
 }
+
 .footer a:hover {
     text-decoration: underline;
 }
