@@ -19,9 +19,8 @@ const songs = [
     }
 ];
 
-// DOM Elements
 const titleEl = document.querySelector('.title');
-const artistEl = document.querySelector('.artiste span');
+const artistEl = document.querySelector('.artiste');
 const coverEl = document.querySelector('.cover-art img');
 const playBtn = document.querySelector('.play-pause-button');
 const prevBtn = document.querySelector('.prevBtn');
@@ -31,12 +30,10 @@ const progressContainer = document.querySelector('.progress-bar');
 const playIcon = document.querySelector('.play-icon');
 const progressThumb = document.querySelector('.progress-thumb');
 
-// Create an audio element
 const audioEl = new Audio();
 
 let currentSongIndex = 0;
 
-// Load the first song initially
 loadSong(currentSongIndex);
 
 function loadSong(index) {
@@ -45,15 +42,15 @@ function loadSong(index) {
     artistEl.textContent = song.artist;
     coverEl.src = song.cover;
     audioEl.src = song.file;
-    updatePlayIcon(); // reset play icon
+    updatePlayIcon(); 
+    updatePlaylistActive() 
+
 
     document.body.style.setProperty(
         '--bg-image',
         `url(${song.cover})`
     );
-    document.body.style.backgroundImage = `url(${song.cover})`; // fallback
-
-    // For pseudo-element
+    document.body.style.backgroundImage = `url(${song.cover})`; 
     document.body.style.setProperty('--cover-url', `url(${song.cover})`);
 
 }
@@ -66,7 +63,6 @@ function updatePlayIcon() {
     }
 }
 
-// Play/Pause toggle
 playBtn.addEventListener('click', () => {
     if (audioEl.paused) {
         audioEl.play();
@@ -74,9 +70,11 @@ playBtn.addEventListener('click', () => {
         audioEl.pause();
     }
     updatePlayIcon();
+    updatePlaylistActive() 
+
+    
 });
 
-// Next/Prev buttons
 nextBtn.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     loadSong(currentSongIndex);
@@ -91,7 +89,6 @@ prevBtn.addEventListener('click', () => {
     updatePlayIcon();
 });
 
-// Progress bar update
 audioEl.addEventListener('timeupdate', () => {
     if (audioEl.duration) {
         const progress = (audioEl.currentTime / audioEl.duration) * 100;
@@ -100,8 +97,8 @@ audioEl.addEventListener('timeupdate', () => {
 });
 
 progressContainer.addEventListener('click', (e) => {
-    const barWidth = progressContainer.clientWidth; // total width of progress bar
-    const clickX = e.offsetX; // position where clicked
+    const barWidth = progressContainer.clientWidth; 
+    const clickX = e.offsetX; 
     const duration = audioEl.duration;
 
     if (!isNaN(duration)) {
@@ -150,9 +147,34 @@ function updateProgressVisual(percent) {
     progressThumb.style.left = `${percent * 100}%`;
 }
 
-// When song ends, play next
 audioEl.addEventListener('ended', () => {
     currentSongIndex = (currentSongIndex + 1) % songs.length;
     loadSong(currentSongIndex);
     audioEl.play();
 });
+
+const playlistEl = document.querySelector('.playlist-items');
+
+songs.forEach((song, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+        <img src="${song.cover}" alt="${song.title}">
+        <div>
+            <div>${song.title}</div>
+            <div style="font-size:12px; color:#bbb;">${song.artist}</div>
+        </div>
+    `;
+    li.addEventListener('click', () => {
+        currentSongIndex = index;
+        loadSong(currentSongIndex);
+        audioEl.play();
+        updatePlaylistActive();
+    });
+    playlistEl.appendChild(li);
+});
+
+function updatePlaylistActive() {
+    document.querySelectorAll('.playlist-items li').forEach((item, idx) => {
+        item.classList.toggle('active', idx === currentSongIndex);
+    });
+}

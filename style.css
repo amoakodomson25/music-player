@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 .audioplayer {
@@ -14,8 +15,8 @@
     font-family: Arial, sans-serif;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    max-width: 300px;
-    margin: 50px auto;
+    max-width: 350px;
+    margin: 20px auto;
 }
 
 .audioplayer .container {
@@ -30,8 +31,8 @@
     background: #333;
     border-radius: 10px;
     width: 100%;
-    max-width: 250px;
-    height: 250px;
+    max-width: 300px;
+    height: 300px;
     background-size: cover;
     background-position: center;
 }
@@ -43,7 +44,7 @@
 
 .title {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .artiste {
@@ -55,7 +56,7 @@
     position: relative;
     background: #444;
     height: 6px;
-    width: 100%;
+    width: 300px;
     border-radius: 10px;
 
 }
@@ -114,15 +115,67 @@
 }
 
 
+
+.playist {
+    margin-top: 20px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.playlist-header h2 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 5px;
+}
+
+.playlist-items {
+    list-style: none;
+}
+
+.playlist-items li {
+    padding: 8px 10px;
+    margin: 5px 0 ;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease;
+}
+
+.playlist-items li:hover {
+    background: rgba(255, 79, 79, 0.2);
+}
+
+.playlist-items li.active {
+    background: rgba(255, 79, 79, 0.4);
+    font-weight: bold;
+}
+
+.playlist-items img {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    min-height: 100vh;
-    overflow: hidden;
 }
 
+/* Blurred cover background */
 body::before {
     content: "";
     position: fixed;
@@ -130,11 +183,74 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: var(--cover-url);
     background-size: cover;
     background-position: center;
     filter: blur(20px);
-    transform: scale(1.1);
+    transform: scale(1.1); /* Prevent edges showing when blurred */
+    z-index: -2;
+    background-image: var(--bg-image);
+    transition: background-image 0.4s ease;
+}
+
+/* Dark overlay for readability */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6); /* dark tint */
     z-index: -1;
-    transition: background-image 0.5s ease-in-out;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Blurred background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+    transform: scale(1.1); /* avoid edges when blurred */
+    z-index: -2;
+    transition: background-image 0.4s ease;
+}
+
+/* Dark overlay on top of blurred background */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+/* Footer style */
+.footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    color: #fff;
+}
+.footer a {
+    color: #ff4f4f;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
 }
