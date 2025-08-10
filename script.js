@@ -190,66 +190,79 @@ function updatePlaylistActive() {
 
 
 
+// ==== Volume Controls ====
+
+// Select elements
 const volumeBar = document.querySelector('.volume');
 const volumeFill = document.querySelector('.volume-fill');
 const volumeThumb = document.querySelector('.volume-thumb');
 
-const startPercent = audioEl.volume * 100;
-volumeFill.style.width = `${startPercent}%`;
-volumeThumb.style.left = `${startPercent}%`;
+// Set default volume
+audioEl.volume = 0.5;
+updateVolumeUI(0.5);
 
-
-function setVolumeFromPosition(e) {
-    const rect = volumeBar.getBoundingClientRect();
-    let volume = (e.clientX - rect.left) / rect.width;
-    volume = Math.min(Math.max(volume, 0), 1); // clamp between 0–1
-    audioEl.volume = volume;
-
-    // Update both fill and thumb
-    const percent = volume * 100;
+// Update UI for given volume (0–1)
+function updateVolumeUI(vol) {
+    const percent = vol * 100;
     volumeFill.style.width = `${percent}%`;
     volumeThumb.style.left = `${percent}%`;
 }
 
-// Drag logic
+// Calculate volume from click/touch position
+function setVolumeFromPosition(e) {
+    const rect = volumeBar.getBoundingClientRect();
+    let clientX;
+
+    if (e.touches && e.touches.length) {
+        clientX = e.touches[0].clientX;
+    } else {
+        clientX = e.clientX;
+    }
+
+    let volume = (clientX - rect.left) / rect.width;
+    volume = Math.min(Math.max(volume, 0), 1); // clamp
+    audioEl.volume = volume;
+    updateVolumeUI(volume);
+}
+
+// Pointer/touch drag logic
 let isDraggingVolume = false;
 
-volumeThumb.addEventListener('mousedown', () => isDraggingVolume = true);
-document.addEventListener('mouseup', () => isDraggingVolume = false);
-document.addEventListener('mousemove', e => {
+volumeThumb.addEventListener('pointerdown', e => {
+    isDraggingVolume = true;
+    e.preventDefault();
+});
+
+document.addEventListener('pointermove', e => {
     if (isDraggingVolume) setVolumeFromPosition(e);
 });
 
-// Click logic
+document.addEventListener('pointerup', () => {
+    isDraggingVolume = false;
+});
+
+// Touch support
+volumeThumb.addEventListener('touchstart', e => {
+    isDraggingVolume = true;
+    e.preventDefault();
+});
+
+document.addEventListener('touchmove', e => {
+    if (isDraggingVolume) setVolumeFromPosition(e);
+});
+
+document.addEventListener('touchend', () => {
+    isDraggingVolume = false;
+});
+
+// Click anywhere on volume bar
 volumeBar.addEventListener('click', setVolumeFromPosition);
 
-// Keep synced with audio element
+// Keep synced with actual audio volume
 audioEl.addEventListener('volumechange', () => {
-    const percent = audioEl.volume * 100;
-    volumeFill.style.width = `${percent}%`;
-    volumeThumb.style.left = `${percent}%`;
+    updateVolumeUI(audioEl.volume);
 });
 
-
-function disableTransitions() {
-    volumeFill.style.transition = 'none';
-    volumeThumb.style.transition = 'none';
-}
-function enableTransitions() {
-    volumeFill.style.transition = '';
-    volumeThumb.style.transition = '';
-}
-
-volumeThumb.addEventListener('mousedown', () => {
-    isDraggingVolume = true;
-    disableTransitions();
-});
-document.addEventListener('mouseup', () => {
-    if (isDraggingVolume) {
-        isDraggingVolume = false;
-        enableTransitions();
-    }
-});
 
 const currentTimeEl = document.querySelector('.current-time');
 const totalDurationEl = document.querySelector('.total-duration');
