@@ -39,3 +39,21 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 ```bash
 git clone https://github.com/amoakodomson25/music-player.git
 cd music-player
+```
+### 2. Add Your Music & Covers
+Place your .mp3 files inside assets/songs/
+Place matching .jpg or .png album covers inside assets/songs/
+
+### 3. Run Locally
+Simply open index.html in your browser.
+
+### 4. 💡 Future Improvements
+Add shuffle and repeat modes
+Keyboard shortcuts for controls
+Save last played track & position to local storage
+
+### 5. 🤝 Contributing
+Pull requests are welcome!
+For major changes, please open an issue first to discuss what you would like to change.
+
+
