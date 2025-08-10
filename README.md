@@ -1,4 +1,4 @@
-# 🎵 Custom Music Player
+# 🎵 Custom Music Player ![Link to app](https://music-player-alpha-navy.vercel.app/)
 
 A sleek, responsive, and feature-rich music player built with **HTML, CSS, and JavaScript**.  
 It features a modern UI with a dynamic playlist, volume control, progress tracking, and smooth animations.
