@@ -3,7 +3,10 @@
 A sleek, responsive, and feature-rich music player built with **HTML, CSS, and JavaScript**.  
 It features a modern UI with a dynamic playlist, volume control, progress tracking, and smooth animations.
 
-<img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/MainScreen.png" width="200px height="200px/>
+---
+- Screenshots
+<img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/MainScreen.png" width="200px height="200px />
+ <img src="https://github.com/amoakodomson25/ImageLibrary/blob/main/MinimalWeatherAppScreenshots/Permission.jpg" width="152.25px" height="320px"/>
 ![Opened playlist](https://github.com/amoakodomson25/ImageLibrary/blob/main/Music%20Player/OpenedPlaylist.png)
 
 
