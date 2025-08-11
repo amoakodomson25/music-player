@@ -276,3 +276,9 @@ audioEl.addEventListener('timeupdate', () => {
 function togglePlaylist() {
     document.querySelector('.playist').classList.toggle('collapsed');
 }
+
+
+function toggleLyrics() {
+    const lyricsSection = document.querySelector('.lyrics');
+    lyricsSection.classList.toggle('collapsed');
+}
