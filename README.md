@@ -19,7 +19,6 @@ It features a modern UI with a dynamic playlist, volume control, progress tracki
 - 📜 **Collapsible Playlist** with smooth open/close animations.
 - ⏯ **Play/Pause**, **Next**, and **Previous** controls.
 - 📊 **Progress Bar** with draggable seek thumb.
-- 🔊 **Volume Control** with live updating fill and thumb.
 - ⏱ **Current Time / Total Duration** display.
 - 📀 **Album Art Background Blur** effect for immersive visuals.
 - 🔄 **Auto-Play Next Track** when the current song ends.
